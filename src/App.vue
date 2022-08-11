@@ -1,27 +1,15 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <div id='roomList'>
-    <div>
-      <p>{{ products[0] }}</p>
-      <p>{{ states[0] }}</p>
-    </div>
-    <div>
-      <p>{{ products[1] }}</p>
-      <p>{{ states[1] }}</p>
-    </div>
-    <div>
-      <p>{{ products[2] }}</p>
-      <p>{{ states[2] }}</p> 
-    </div>
-    <div>
-      <p>{{ products[3] }}</p>
-      <p>{{ states[3] }}</p> 
-    </div>
-    <div>
-      <p>{{ products[4] }}</p>
-      <p>{{ states[4] }}</p> 
-    </div>
+  <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
+
+  <div class="menu">
+    <a v-for="menuName in menuLists" :key="menuName" >{{ menuName }}</a>
   </div>
+
+  <div v-for="(roomName,i) in roomLists" :key="i">
+    <p>{{ roomLists[i] }}</p>
+    <p>{{ states[i] }}</p>
+  </div>
+
 </template>
 
 <script>
@@ -30,7 +18,8 @@ export default {
   name: 'App',
    data(){
     return {
-      products : ['101호', '102호', '103호', '103호', '105호'],
+      menuLists : ['Home', 'Room', 'About'],
+      roomLists : ['101호', '102호', '103호', '103호', '105호'],
       states : ['계약중', '계약중', '빈방', '빈방', '계약중'],
     }
   },
@@ -48,6 +37,16 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
+
+.menu {
+  background : darkslateblue;
+  padding : 15px;
+  border-radius : 5px;
+}
+.menu a {
+  color : white;
+  padding : 10px;
+}
+
 </style>
