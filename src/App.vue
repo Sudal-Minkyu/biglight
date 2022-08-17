@@ -1,37 +1,29 @@
 <template>
   <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
+  <Discount></Discount>
 
-  <div class="black-bg" v-if="modalbool == true">
-    <div class="white-bg">
-        <img class="room-img" :src='roomDetails[roomClickNum].image'> 
-        <h4>{{ roomDetails[roomClickNum].title }}</h4>
-        <p>내용 : {{ roomDetails[roomClickNum].content }}</p>
-        <p>조회수 : {{ roomDetails[roomClickNum].clickCnt }}</p>
-        <button @click = "modalbool = false">닫기</button>
-    </div>
-  </div>
-
+  <!-- <div class="start" :class="{end : modalbool}"> -->
+  <transition name="fade">
+    <Modal @closeModal="modalbool = false;" :roomDetails="roomDetails" :modalbool="modalbool" :roomClickNum="roomClickNum"></Modal>
+  </transition>
+    
+  <!-- </div> -->
   <h1>큰빛빌라</h1>
   <div class="menu">
     <a v-for="menuName in menuLists" :key="menuName" >{{ menuName }}</a>
   </div>
 
-  <div v-for="(roomData,i) in roomDetails" :key="i">
-    <img @click = "modalbool = true; roomDetails[i].clickCnt++; roomClickNum = i" class="room-img" :src='roomDetails[i].image'> 
-    <h4 @click = "modalbool = true; roomDetails[i].clickCnt++; roomClickNum = i">{{ roomDetails[i].title }}</h4>
-    <p>내용 : {{roomDetails[i].content}}</p>
-    <p>{{ roomDetails[i].state }}</p>
-    <p v-if="roomDetails[i].startDate != null">
-      기간 : {{roomDetails[i].startDate}} ~ {{roomDetails[i].endDate}}
-    </p>
-    <button @click="roomDetails[i].suggestion++">추천하기</button><span>추천수 : {{ roomDetails[i].suggestion }}</span>
-  </div>
+  <Card @openModal="modalbool = true; roomClickNum = $event" @upCount="roomClickNum++" :roomDetails="roomDetails" :roomClickNum="roomClickNum"></Card>
+
 
 </template>
 
 <script>
 
 import roomData from './assets/room';
+import Discount from './Discount.vue'
+import Modal from './Modal.vue'
+import Card from './Card.vue'
 
 export default {
   name: 'App',
@@ -49,8 +41,10 @@ export default {
   },
 
   components: {
-
-  }
+    Discount: Discount,
+    Modal: Modal,
+    Card: Card
+}
 }
 
 </script>
@@ -73,27 +67,39 @@ export default {
   color : white;
   padding : 10px;
 }
-
-.room-img {
-  width: 100%;
-  margin-top: 40px;
-}
-
 body {
   margin : 0;
 }
 div {
   box-sizing: border-box;
 }
-.black-bg {
-  width: 100%; height:100%;
-  background: rgba(0,0,0,0.5);
-  position: fixed; padding: 20px;
+.room-img {
+  width: 100%;
+  margin-top: 40px;
 }
-.white-bg {
-  width: 100%; background: white;
-  border-radius: 8px;
-  padding: 20px;
-} 
+
+.fade-leave-from{
+  /* 시작 */
+  opacity: 1;
+}
+.fade-leave-active{
+  transition: all 1s;
+}
+.fade-leave-to{
+  /* 끝 */
+  opacity: 0;
+}
+
+.fade-enter-from{
+  /* 시작 */
+  opacity: 0;
+}
+.fade-enter-active{
+  transition: all 1s;
+}
+.fade-enter-to{
+  /* 끝 */
+  opacity: 1;
+}
 
 </style>
