@@ -1,7 +1,7 @@
 <template>
     <div v-for="(roomData,i) in roomDetails" :key="i">
         <img @click="$emit('openModal', i); roomDetails[i].clickCnt++;" class="room-img" :src='roomDetails[i].image'> 
-        <button @click="$emit('openModal', i); roomDetails[i].clickCnt++;">{{ roomDetails[i].title }}</button>
+        <h4 @click="$emit('openModal', i); roomDetails[i].clickCnt++;">{{ roomDetails[i].title }}</h4>
         <p>내용 : {{roomDetails[i].content}}</p>
         <p>{{ roomDetails[i].state }}</p>
         <p v-if="roomDetails[i].startDate != null">

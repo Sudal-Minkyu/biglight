@@ -1,27 +1,33 @@
 <template>
+
   <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
-  <Discount></Discount>
+  <!-- <Discount></Discount> -->
 
   <!-- <div class="start" :class="{end : modalbool}"> -->
   <transition name="fade">
-    <Modal @closeModal="modalbool = false;" :roomDetails="roomDetails" :modalbool="modalbool" :roomClickNum="roomClickNum"></Modal>
+    <Modal 
+      @closeModal="modalbool = false;" 
+      :roomDetails="roomDetails" :modalbool="modalbool" :roomClickNum="roomClickNum">
+    </Modal>
   </transition>
-    
   <!-- </div> -->
+
   <h1>큰빛빌라</h1>
   <div class="menu">
     <a v-for="menuName in menuLists" :key="menuName" >{{ menuName }}</a>
   </div>
 
-  <Card @openModal="modalbool = true; roomClickNum = $event" @upCount="roomClickNum++" :roomDetails="roomDetails" :roomClickNum="roomClickNum"></Card>
-
+  <Card 
+    @openModal="modalbool = true; roomClickNum = $event"
+    :roomDetails="roomDetails" :roomClickNum="roomClickNum">
+  </Card>
 
 </template>
 
 <script>
 
 import roomData from './assets/room';
-import Discount from './Discount.vue'
+// import Discount from './Discount.vue'
 import Modal from './Modal.vue'
 import Card from './Card.vue'
 
@@ -41,7 +47,7 @@ export default {
   },
 
   components: {
-    Discount: Discount,
+    // Discount: Discount,
     Modal: Modal,
     Card: Card
 }
@@ -78,6 +84,7 @@ div {
   margin-top: 40px;
 }
 
+/* 닫기 애니메이션 */
 .fade-leave-from{
   /* 시작 */
   opacity: 1;
@@ -90,8 +97,10 @@ div {
   opacity: 0;
 }
 
+/* 열기 애니메이션 */
 .fade-enter-from{
   /* 시작 */
+  transform: translateY(-100px);
   opacity: 0;
 }
 .fade-enter-active{
@@ -99,6 +108,7 @@ div {
 }
 .fade-enter-to{
   /* 끝 */
+  transform: translateY(0px);
   opacity: 1;
 }
 
