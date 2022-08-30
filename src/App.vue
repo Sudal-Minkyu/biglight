@@ -1,5 +1,27 @@
 <template>
 
+  <nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">큰빛빌라</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Rooms</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
   <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
   <!-- <Discount></Discount> -->
 
@@ -12,10 +34,10 @@
   </transition>
   <!-- </div> -->
 
-  <h1>큰빛빌라</h1>
+  <!-- <h1>큰빛빌라</h1>
   <div class="menu">
     <a v-for="menuName in menuLists" :key="menuName" >{{ menuName }}</a>
-  </div>
+  </div> -->
 
   <Card 
     @openModal="modalbool = true; roomClickNum = $event"
@@ -65,7 +87,7 @@ export default {
 }
 
 .menu {
-  background : darkslateblue;
+  background : rgb(168, 157, 238);
   padding : 15px;
   border-radius : 5px;
 }

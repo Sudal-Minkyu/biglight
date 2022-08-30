@@ -7,7 +7,7 @@
         <p v-if="roomDetails[i].startDate != null">
             기간 : {{roomDetails[i].startDate}} ~ {{roomDetails[i].endDate}}
         </p>
-        <button @click="roomDetails[i].suggestion++">추천하기</button><span>추천수 : {{ roomDetails[i].suggestion }}</span>
+        <button type="button" class="btn btn-dark" style="margin: 5px;" @click="roomDetails[i].suggestion++">추천하기</button><span>추천수 : {{ roomDetails[i].suggestion }}</span>
     </div>
 </template>
 
